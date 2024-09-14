@@ -1,0 +1,8 @@
+import random
+import timeit
+from metodos_ordenacao.BubbleSort import BubbleSort
+from metodos_ordenacao.InsertionSort import InsertionSort
+from metodos_ordenacao.QuickSort import QuickSort
+from metodos_ordenacao.CoutingSort import CountingSort
+from metodos_ordenacao.HeapSort import HeapSort
+from metodos_ordenacao.MergeSort import MergeSort
