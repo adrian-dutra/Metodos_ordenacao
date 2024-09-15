@@ -1,5 +1,6 @@
 import random
 import timeit
+import time
 from metodos_ordenacao.BubbleSort import *
 from metodos_ordenacao.InsertionSort import *
 from metodos_ordenacao.QuickSort import *
@@ -14,6 +15,7 @@ from tipos_vetores.vetor_quase_ordenado import *
 class trab:
     #Cria variaveis para armazenar valores
     tamanhos_vetores = []
+    
     tempos_insertion_aleatorio = []
     tempos_bubble_aleatorio = []
     tempos_merge_aleatorio = []
@@ -47,18 +49,177 @@ class trab:
     fim = 1000
     stp = 100
     
-    while rpt != 0:
-        vet_aleatorio = vetor_aleatorio.gera_vetor_aleatorio()
-        vet_reverso = vetor_reverso.gera_vetore_reverso(inc, fim, stp)
-        vet_ordenado = vetor_ordenado.gera_vetor_ordenado(inc, fim, stp)
-        vet_quase_ordenado = vetor_quase_ordenado.gera_vetor_quase_ordenado(inc, fim, stp)
+    for i in range(rpt):
+        vetores_aleatorios = vetor_aleatorio.gera_vetor_aleatorio(inc, fim, stp)
+        ##################ALEATORIO####################
+        for vetor_aleatorio in vetores_aleatorios:
+            
+            tempo_inicio = time.time()
+            BubbleSort.bubble_sort(vetor_aleatorio)
+            tempo_fim = time.time()
+            tempo_bubble_ale = tempo_fim - tempo_inicio
+            tempos_bubble_aleatorio.append(tempo_bubble_ale)
+            
+            tempo_inicio = time.time()
+            InsertionSort.insertion_sort(vetor_aleatorio)
+            tempo_fim = time.time()
+            tempo_insertion_ale = tempo_fim - tempo_inicio
+            tempos_insertion_aleatorio.append(tempo_insertion_ale)
+            
+            tempo_inicio = time.time()
+            QuickSort.quick_sort(vetor_aleatorio, 0, len(vetor_aleatorio) - 1)
+            tempo_fim = time.time()
+            tempo_quick_ale = tempo_fim - tempo_inicio
+            tempos_quick_aleatorio.append(tempo_quick_ale)
+            
+            tempo_inicio = time.time()
+            MergeSort.mergeSort(vetor_aleatorio, 0, len(vetor_aleatorio) - 1)
+            tempo_fim = time.time()
+            tempo_merge_ale = tempo_fim - tempo_inicio
+            tempos_merge_aleatorio.append(tempo_merge_ale)
+        
+            tempo_inicio = time.time()
+            HeapSort.heap_sort(vetor_aleatorio)
+            tempo_fim = time.time()
+            tempo_heap_ale = tempo_fim - tempo_inicio
+            tempos_heap_aleatorio.append(tempo_heap_ale)
+            
+            tempo_inicio = time.time()
+            CountingSort.counting_sort(vetor_aleatorio)
+            tempo_fim = time.time()
+            tempo_counting_ale = tempo_fim - tempo_inicio
+            tempos_countin_aleatorio.append(tempo_counting_ale)
+     
+    tempo_insertion_medio = sum(tempos_insertion_aleatorio) / rpt
+    tempo_bubble_medio = sum(tempos_bubble_aleatorio) / rpt
+    tempo_merge_medio = sum(tempos_merge_aleatorio) / rpt
+    tempo_heap_medio = sum(tempos_heap_aleatorio) / rpt
+    tempo_quick_medio = sum(tempos_quick_aleatorio) / rpt
+    tempo_countin_medio = sum(tempos_countin_aleatorio) / rpt
     
-        # ======================ALEATORIO====================
+    
+    
+    
+    #############REVERSO###############
+    vet_reverso = vetor_reverso.gera_vetore_reverso(inc, fim, stp)
+    for vetor_rev in vet_reverso:
+        tamanhos_vetores.append(len(vetor_rev))
+        
+        tempo_inicio = time.time()
+        BubbleSort.bubble_sort(vetor_rev)
+        tempo_fim = time.time()
+        tempo_bubble_rev = tempo_fim - tempo_inicio
+        tempos_bubble_reverso.append(tempo_bubble_rev)
+        
+        tempo_inicio = time.time()
+        InsertionSort.insertion_sort(vetor_rev)
+        tempo_fim = time.time()
+        tempo_insertion_rev = tempo_fim - tempo_inicio
+        tempos_insertion_reverso.append(tempo_insertion_rev)
+        
+        tempo_inicio = time.time()
+        QuickSort.quick_sort(vetor_rev, 0, len(vetor_rev) - 1)
+        tempo_fim = time.time()
+        tempo_quick_rev = tempo_fim - tempo_inicio
+        tempos_quick_reverso.append(tempo_quick_rev)
+        
+        tempo_inicio = time.time()
+        MergeSort.mergeSort(vetor_rev, 0, len(vetor_rev) - 1)
+        tempo_fim = time.time()
+        tempo_merge_rev = tempo_fim - tempo_inicio
+        tempos_merge_reverso.append(tempo_merge_rev)
+
+        tempo_inicio = time.time()
+        HeapSort.heap_sort(vetor_rev)
+        tempo_fim = time.time()
+        tempo_heap_rev = tempo_fim - tempo_inicio
+        tempos_heap_reverso.append(tempo_heap_rev)
+        
+        tempo_inicio = time.time()
+        CountingSort.counting_sort(vetor_rev)
+        tempo_fim = time.time()
+        tempo_counting_rev = tempo_fim - tempo_inicio
+        tempos_countin_reverso.append(tempo_counting_rev)
         
     
+    ################ORDENADO####################
+    vet_ordenado = vetor_ordenado.gera_vetor_ordenado(inc, fim, stp)
+    for vetor_ordenado in vet_ordenado:
+        tempo_inicio = time.time()
+        BubbleSort.bubble_sort(vetor_ordenado)
+        tempo_fim = time.time()
+        tempo_bubble_ord = tempo_fim - tempo_inicio
+        tempos_bubble_ordenado.append(tempo_bubble_ord)
+        
+        tempo_inicio = time.time()
+        InsertionSort.insertion_sort(vetor_ordenado)
+        tempo_fim = time.time()
+        tempo_insertion_ord = tempo_fim - tempo_inicio
+        tempos_insertion_ordenado.append(tempo_insertion_ord)
+        
+        tempo_inicio = time.time()
+        QuickSort.quick_sort(vetor_ordenado, 0, len(vetor_ordenado) - 1)
+        tempo_fim = time.time()
+        tempo_quick_ord = tempo_fim - tempo_inicio
+        tempos_quick_ordenado.append(tempo_quick_ord)
+        
+        tempo_inicio = time.time()
+        MergeSort.mergeSort(vetor_ordenado, 0, len(vetor_ordenado) - 1)
+        tempo_fim = time.time()
+        tempo_merge_ord = tempo_fim - tempo_inicio
+        tempos_merge_ordenado.append(tempo_merge_ord)
+
+        tempo_inicio = time.time()
+        HeapSort.heap_sort(vetor_ordenado)
+        tempo_fim = time.time()
+        tempo_heap_ord = tempo_fim - tempo_inicio
+        tempos_heap_ordenado.append(tempo_heap_ord)
+        
+        tempo_inicio = time.time()
+        CountingSort.counting_sort(vetor_ordenado)
+        tempo_fim = time.time()
+        tempo_counting_ord = tempo_fim - tempo_inicio
+        tempos_countin_ordenado.append(tempo_counting_ord)
     
     
-    
+    ###################QUASE ORDENADO###################
+    vet_quase_ordenado = vetor_quase_ordenado.gera_vetor_quase_ordenado(inc, fim, stp)
+    for vetor_quase in vet_quase_ordenado:
+        tempo_inicio = time.time()
+        BubbleSort.bubble_sort(vetor_quase)
+        tempo_fim = time.time()
+        tempo_bubble_quase_ord = tempo_fim - tempo_inicio
+        tempos_bubble_quase_ordenado.append(tempo_bubble_quase_ord)
+        
+        tempo_inicio = time.time()
+        InsertionSort.insertion_sort(vetor_quase)
+        tempo_fim = time.time()
+        tempo_insertion_quase_ord = tempo_fim - tempo_inicio
+        tempos_insertion_quase_ordenado.append(tempo_insertion_quase_ord)
+        
+        tempo_inicio = time.time()
+        QuickSort.quick_sort(vetor_quase, 0, len(vetor_quase) - 1)
+        tempo_fim = time.time()
+        tempo_quick_quase_ord = tempo_fim - tempo_inicio
+        tempos_quick_quase_ordenado.append(tempo_quick_quase_ord)
+        
+        tempo_inicio = time.time()
+        MergeSort.mergeSort(vetor_quase, 0, len(vetor_quase) - 1)
+        tempo_fim = time.time()
+        tempo_merge_quase_ord = tempo_fim - tempo_inicio
+        tempos_merge_quase_ordenado.append(tempo_merge_quase_ord)
+
+        tempo_inicio = time.time()
+        HeapSort.heap_sort(vetor_quase)
+        tempo_fim = time.time()
+        tempo_heap_quase_ord = tempo_fim - tempo_inicio
+        tempos_heap_quase_ordenado.append(tempo_heap_quase_ord)
+        
+        tempo_inicio = time.time()
+        CountingSort.counting_sort(vetor_quase)
+        tempo_fim = time.time()
+        tempo_counting_quase_ord = tempo_fim - tempo_inicio
+        tempos_countin_quase_ordenado.append(tempo_counting_quase_ord)
     
     
     

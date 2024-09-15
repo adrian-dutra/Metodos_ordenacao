@@ -3,6 +3,7 @@ import random
 
 class vetor_quase_ordenado:
     def gera_vetor_quase_ordenado(inc, fim, stp):
+        vetores = []
         for n in range(inc, fim + 1, stp):
        
             vetor = list(range(1, n + 1))
@@ -16,6 +17,6 @@ class vetor_quase_ordenado:
             for idx, valor in zip(indices, elementos_embaralhados):
                 vetor[idx] = valor
             
-            print(f"Vetor quase ordenado de tamanho {n}: {vetor}")
+            vetores.append(vetor)
             
-        return vetor
+        return vetores

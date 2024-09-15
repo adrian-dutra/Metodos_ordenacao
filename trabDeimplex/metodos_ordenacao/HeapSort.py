@@ -20,7 +20,7 @@ class HeapSort:
 
         # If largest is not root
         if largest != i:
-            HeapSort.swap(vetor[i], vetor[largest])
+            HeapSort.swap(vetor, i, largest)
 
             # Recursively heapify the affected sub-tree
             HeapSort.heapify(vetor, n, largest)
