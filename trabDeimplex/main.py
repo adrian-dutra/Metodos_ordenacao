@@ -10,7 +10,8 @@ from tipos_vetores.vetor_aleatorio import *
 from tipos_vetores.vetor_ordenado import *
 from tipos_vetores.vetor_reverso import *
 from tipos_vetores.vetor_quase_ordenado import *
-
+#ADRIANO ARAÚJO DUTRA
+#GUSTAVO ENCINAS FERNANDES
 class main:
     #Cria variaveis para armazenar valores
     tamanhos_vetores = []
