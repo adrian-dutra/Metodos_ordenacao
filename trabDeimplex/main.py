@@ -1,5 +1,3 @@
-import random
-import timeit
 import time
 import numpy as np
 from metodos_ordenacao.BubbleSort import *
@@ -13,18 +11,9 @@ from tipos_vetores.vetor_ordenado import *
 from tipos_vetores.vetor_reverso import *
 from tipos_vetores.vetor_quase_ordenado import *
 
-class trab:
+class main:
     #Cria variaveis para armazenar valores
     tamanhos_vetores = []
-    
-    tempos_medios = {
-        "insertion": [],
-        "selection": [],
-        "merge": [],
-        "heap": [],
-        "quick": [],
-        "counting": []
-    }
     
     tempos_insertion_aleatorio = []
     tempos_bubble_aleatorio = []
@@ -55,15 +44,17 @@ class trab:
     tempos_countin_quase_ordenado = []
     
     rpt = int(input())
-    inc = 100
-    fim = 1000
-    stp = 100
+    inc = 10000
+    fim = 30000
+    stp = 5000
     
+    #CHAMA AS FUNÇÕES DE CRIAÇÃO DE VETORES E ORDENAÇÃO
     for i in range(rpt):
-        vetores_aleatorios = vetor_aleatorio.gera_vetor_aleatorio(inc, fim, stp)
         ##################ALEATORIO####################
+        vetores_aleatorios = vetor_aleatorio.gera_vetor_aleatorio(inc, fim, stp)
+        #DEPOIS DE GERADOS OS VETORES, PASSA UM POR UM NO FOR NOS METODOS DE ORDENAÇÃO
+        #GUARDANDO OS TEMPOS DE EXECUÇÃO
         for vetor_ale in vetores_aleatorios:
-            tamanho_vetor = len(vetor_ale)
             
             vetor_temp = vetor_ale.copy()
             tempo_inicio = time.time()
@@ -85,7 +76,7 @@ class trab:
             tempo_fim = time.time()
             tempo_quick_ale = tempo_fim - tempo_inicio
             tempos_quick_aleatorio.append(tempo_quick_ale)
-            
+                        
             vetor_temp = vetor_ale.copy()
             tempo_inicio = time.time()
             MergeSort.mergeSort(vetor_temp, 0, len(vetor_temp) - 1)
@@ -105,15 +96,6 @@ class trab:
             tempo_fim = time.time()
             tempo_counting_ale = tempo_fim - tempo_inicio
             tempos_countin_aleatorio.append(tempo_counting_ale)
-     
-    tempos_medios["insertion"].append(np.mean(tempos_insertion_aleatorio))
-    tempos_medios["selection"].append(np.mean(tempos_bubble_aleatorio))
-    tempos_medios["merge"].append(np.mean(tempos_merge_aleatorio))
-    tempos_medios["heap"].append(np.mean(tempos_heap_aleatorio))
-    tempos_medios["quick"].append(np.mean(tempos_quick_aleatorio))
-    tempos_medios["counting"].append(np.mean(tempos_countin_aleatorio))
-    
-    
     
     
     #############REVERSO###############
@@ -132,13 +114,13 @@ class trab:
         tempo_fim = time.time()
         tempo_insertion_rev = tempo_fim - tempo_inicio
         tempos_insertion_reverso.append(tempo_insertion_rev)
-        
+
         tempo_inicio = time.time()
         QuickSort.quick_sort(vetor_rev, 0, len(vetor_rev) - 1)
         tempo_fim = time.time()
         tempo_quick_rev = tempo_fim - tempo_inicio
         tempos_quick_reverso.append(tempo_quick_rev)
-        
+
         tempo_inicio = time.time()
         MergeSort.mergeSort(vetor_rev, 0, len(vetor_rev) - 1)
         tempo_fim = time.time()
@@ -150,14 +132,14 @@ class trab:
         tempo_fim = time.time()
         tempo_heap_rev = tempo_fim - tempo_inicio
         tempos_heap_reverso.append(tempo_heap_rev)
-        
+
         tempo_inicio = time.time()
         CountingSort.counting_sort(vetor_rev)
         tempo_fim = time.time()
         tempo_counting_rev = tempo_fim - tempo_inicio
         tempos_countin_reverso.append(tempo_counting_rev)
-        
-    
+
+
     ################ORDENADO####################
     vet_ordenado = vetor_ordenado.gera_vetor_ordenado(inc, fim, stp)
     for vetor_ord in vet_ordenado:
@@ -166,19 +148,19 @@ class trab:
         tempo_fim = time.time()
         tempo_bubble_ord = tempo_fim - tempo_inicio
         tempos_bubble_ordenado.append(tempo_bubble_ord)
-        
+
         tempo_inicio = time.time()
         InsertionSort.insertion_sort(vetor_ord)
         tempo_fim = time.time()
         tempo_insertion_ord = tempo_fim - tempo_inicio
         tempos_insertion_ordenado.append(tempo_insertion_ord)
-        
+
         tempo_inicio = time.time()
         QuickSort.quick_sort(vetor_ord, 0, len(vetor_ord) - 1)
         tempo_fim = time.time()
         tempo_quick_ord = tempo_fim - tempo_inicio
         tempos_quick_ordenado.append(tempo_quick_ord)
-        
+
         tempo_inicio = time.time()
         MergeSort.mergeSort(vetor_ord, 0, len(vetor_ord) - 1)
         tempo_fim = time.time()
@@ -190,13 +172,13 @@ class trab:
         tempo_fim = time.time()
         tempo_heap_ord = tempo_fim - tempo_inicio
         tempos_heap_ordenado.append(tempo_heap_ord)
-        
+
         tempo_inicio = time.time()
         CountingSort.counting_sort(vetor_ord)
         tempo_fim = time.time()
         tempo_counting_ord = tempo_fim - tempo_inicio
         tempos_countin_ordenado.append(tempo_counting_ord)
-    
+
     
     ###################QUASE ORDENADO###################
     vet_quase_ordenado = vetor_quase_ordenado.gera_vetor_quase_ordenado(inc, fim, stp)
@@ -206,19 +188,19 @@ class trab:
         tempo_fim = time.time()
         tempo_bubble_quase_ord = tempo_fim - tempo_inicio
         tempos_bubble_quase_ordenado.append(tempo_bubble_quase_ord)
-        
+
         tempo_inicio = time.time()
         InsertionSort.insertion_sort(vetor_quase)
         tempo_fim = time.time()
         tempo_insertion_quase_ord = tempo_fim - tempo_inicio
         tempos_insertion_quase_ordenado.append(tempo_insertion_quase_ord)
-        
+
         tempo_inicio = time.time()
         QuickSort.quick_sort(vetor_quase, 0, len(vetor_quase) - 1)
         tempo_fim = time.time()
         tempo_quick_quase_ord = tempo_fim - tempo_inicio
         tempos_quick_quase_ordenado.append(tempo_quick_quase_ord)
-        
+
         tempo_inicio = time.time()
         MergeSort.mergeSort(vetor_quase, 0, len(vetor_quase) - 1)
         tempo_fim = time.time()
@@ -230,18 +212,17 @@ class trab:
         tempo_fim = time.time()
         tempo_heap_quase_ord = tempo_fim - tempo_inicio
         tempos_heap_quase_ordenado.append(tempo_heap_quase_ord)
-        
+
         tempo_inicio = time.time()
         CountingSort.counting_sort(vetor_quase)
         tempo_fim = time.time()
         tempo_counting_quase_ord = tempo_fim - tempo_inicio
         tempos_countin_quase_ordenado.append(tempo_counting_quase_ord)
-    
-    
+
     
     #Mostra os resultados no terminal
-    print("[[aleatorio]]")
-    print("n   insertions   selections   mergesorts   heapsorts   quicksorts   countingsorts")
+    print("[[RANDOM]]")
+    print("tamanho   insertions   bubblesorts   mergesorts   heapsorts   quicksorts   countingsorts")
     print("-------------------------------------------------------------------------------")
     for i in range(len(vetores_aleatorios)):
         print("{:.0f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}".format(
@@ -255,8 +236,8 @@ class trab:
         ))
     print()
     
-    print("[[reverso]]")
-    print("n   insertions   selections   mergesorts   heapsorts   quicksorts   countingsorts")
+    print("[[REVERSE]]")
+    print("tamanho   insertions   bubblesorts   mergesorts   heapsorts   quicksorts   countingsorts")
     print("-------------------------------------------------------------------------------")
     for i in range(len(vet_reverso)):
         print("{:.0f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}".format(
@@ -270,8 +251,8 @@ class trab:
         ))
     print()
     
-    print("[[ordenado]]")
-    print("n   insertions   selections   mergesorts   heapsorts   quicksorts   countingsorts")
+    print("[[SORTED]]")
+    print("tamanho   insertions   bubblesorts   mergesorts   heapsorts   quicksorts   countingsorts")
     print("-------------------------------------------------------------------------------")
     for i in range(len(vet_ordenado)):
         print("{:.0f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}".format(
@@ -285,8 +266,8 @@ class trab:
         ))
     print()
     
-    print("[[Quase ordenado]]")
-    print("n   insertions   selections   mergesorts   heapsorts   quicksorts   countingsorts")
+    print("[[NEARLY SORTED]]")
+    print("tamanho   insertions   bubblesorts   mergesorts   heapsorts   quicksorts   countingsorts")
     print("-------------------------------------------------------------------------------")
     for i in range(len(vet_quase_ordenado)):
         print("{:.0f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}    {:.6f}".format(
